@@ -1,0 +1,16 @@
+<div ng-controller="PersonList" ng-init="checkStepTitle('Pick a person')"  id="bb_wrap">
+<h1>Select a person</h1>
+
+	<div class="bb-list">
+		<div class="bb-list-item">
+			<div class="bb-item col-sm-3" ng-click="selectItem(item)" ng-repeat="item in bookable_items">
+				<div class="bb-desc">
+					<div class="bb-txt">
+						<h2 style="text-align:center;">{{item.name}}</h2>
+            <small>{{item.description}}</small>
+					</div> 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

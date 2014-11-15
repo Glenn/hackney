@@ -1,0 +1,52 @@
+<div ng-controller="ItemDetails" ng-init="checkStepTitle('Confirm Details')" class="check-items">
+  <div class="bb-booking">
+    <div class="bb-frame">
+      <div class="bb-head">
+        <h2>Change Your Booking Time- {{item.describe()}}</h2>
+      </div>
+      <form name="client_form" class="bb-form" role="form">
+        <div class="bb-node">
+          <h3>Old Booking Details</h3>
+          <br/>
+          <ul>
+            <li>
+              <label>Date & Time</label>{{item.srcBooking.describe}}
+            </li>
+          </ul>
+        </div>
+        <div class="bb-node">
+          <h3>Amended Booking Details</h3>
+          <br/>
+          <ul>
+            <li>
+              <label>New Date</label>{{item.booking_date("dddd, MMMM Do YYYY")}}
+            </li>
+            <li>
+              <label>New Time</label>{{item.booking_time()}}
+            </li>
+          </ul>
+        </div>
+
+        <div ng-show="item_details.hasQuestions" class="question-node">
+          <h3>Questions</h3>
+          <ul>
+            <li ng-repeat="question in item_details.questions" bb-question-line ng-show="question.currentlyShown">
+              <label>{{question.name}}:</label>
+              <span>
+                <input bb-question="question" class="form-control"/><br/>
+                <small>{{question.help_text}}</small>
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="row-fluid">
+          <div class="col-md-12 text-right">
+            <a href="" class="btn btn-primary" ng-disabled="!client_form.$valid" ng-click="confirm_move(client_form)">Change Booking Time</a>
+          </div>
+        </div>
+        <br/>
+      </form>
+    </div>
+  </div>
+</div>

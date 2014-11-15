@@ -1,0 +1,112 @@
+﻿html, body {
+	height: 100%;
+	overflow: auto;
+}
+body {
+	padding: 0;
+	margin: 0;
+}
+a:link {text-decoration: none}
+a:visited {text-decoration: none}
+a:hover {text-decoration: underline}
+a:active {text-decoration: none}
+.tlbSearchBar {
+    background-color: White;
+    background-image: none; 
+}
+.btnAddressSearch {
+    background-image: Gray;
+}
+.pnlAddressDetails {
+    background-color: White;
+}
+.btnSubmit 
+{
+    position: relative;
+    right: 0px;
+}
+.imgFormHelper {
+    padding-left: 4px;
+    padding-top: 2px;
+    z-index:1000;
+}
+.lblFormHeader {
+    font-family: sans-serif;
+    font-size: 10pt;
+}
+.lblFormText {
+    font-family: sans-serif;
+    font-size: 10pt;
+    padding:4px;
+}
+.lblFrmHERComment 
+{
+    font-family: sans-serif;
+    font-size: 10pt;
+    font-weight: bold;
+    padding:4px;
+}
+.lblFrmLIComment 
+{
+    font-family: sans-serif;
+    font-size: 10pt;
+    font-weight: bold;
+    padding:4px;
+}
+.x-grid3-dirty-cell {
+     background-image: none;
+}
+.imbShowHideExplorer
+{
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index:21;
+}
+.imbClear
+{
+    position:absolute;
+    left:97px;
+    top:3px;
+    z-index:21;
+}
+.imbLabel
+{
+    position:absolute;
+    left:75px;
+    top:3px;
+    z-index:21;
+}
+.imbPrint
+{
+    position:absolute;
+    left:119px;
+    top:3px;
+    z-index:21;
+}
+.imbPoint
+{
+    position:absolute;
+    left:31px;
+    top:3px;
+    z-index:21;
+}
+.imbExtent
+{
+    position:absolute;
+    left:53px;
+    top:3px;
+    z-index:21;
+}
+.imbPoly
+{
+    position:absolute;
+    left:53px;
+    top:3px;
+    z-index:21;
+}
+.btnPrint
+{
+    margin-left: 145px;
+    color: blue;
+}

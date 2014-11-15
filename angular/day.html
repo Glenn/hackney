@@ -1,0 +1,68 @@
+<div bb-time-ranges>
+
+  <h1>Select a time</h1>
+
+    <div bb-custom-booking-text class="custom-booking-text">
+      <div ng-repeat="msg in messages" ng-bind-html="msg"></div>
+    </div>
+
+    <section class="date-select text-block visible-xs container">
+      <div class="input-group date-picker">
+        <!-- date format: http://docs.angularjs.org/api/ng.filter:date -->
+        <input type="text" ng-model="selected_date" class="form-control" is-open="opened" min="today" datepicker-popup="EEEE, dd MMMM yyyy" datepicker-options="{'starting-day': 1, 'show-button-bar': false}" show-weeks="false" show-button-bar="false" ng-click="$event.preventDefault();$event.stopPropagation();opened=true" ng-change="selectedDateChanged()"/>
+        <span class="input-group-addon" ng-click="$event.preventDefault();$event.stopPropagation();opened=true">
+          <i class="glyphicon glyphicon-calendar"></i>
+        </span>
+      </div>
+    </section>
+    <navigation class="bb-navigation week-nav hidden-xs">
+      <div class="col-xs-4 hidden-xs">
+        <button class="btn btn-primary bb-btn-prev" ng-click="subtract('weeks',1)" ng-disabled="isPast()">
+          <span class="link">Previous week</span>
+        </button>
+      </div>
+      <div class="col-xs-4 hidden-xs">
+        <h2 class="week-title">{{format_start_date('MMMM YYYY')}}</h2>
+      </div>
+      <div class="col-xs-4 hidden-xs">
+        <button class="btn btn-primary bb-btn-next bb-push" ng-click="add('weeks',1)">
+          <span class="link">Next week</span>
+        </button>
+      </div>
+    </navigation>
+
+    <div class="bb-week">
+      <ul class="bb-week-frame" id="frame">
+        <li class="day bb-week-column" ng-repeat="day in days"  ng-class="{'hidden-xs': day.hide, 'past': day.date.isBefore(moment(),'day')}">
+          <h3 class="hidden-xs">{{day.date.format("ddd D")}}</h3>
+
+          <navigation class="bb-navigation day-nav visible-xs">
+            <div class="col-xs-4 visible-xs">
+              <button class="btn btn-primary bb-btn-prev" ng-click="subtract('days',1)">
+                <span class="link">Prev</span>
+              </button>
+            </div>
+            <div class="col-xs-4 visible-xs">
+              <h3>{{day.date.format("ddd D")}}</h3>
+            </div>
+            <div class="col-xs-4 visible-xs">
+              <button class="btn btn-primary bb-btn-next bb-push" ng-click="add('days',1)">
+                <span class="link">Next</span>
+              </button>
+            </div>
+          </navigation>
+
+          <div ng-hide="day.slots">
+            <span class="no-value">No available times</span>
+          </div>
+
+          <div class="col-row times">
+            <button class="btn btn-default btn-primary time-slot" ng-class="slot.status()" ng-click="selectSlot(day, slot)" ng-repeat="slot in day.slots">{{slot.print_time()}}</button>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+
+
+  </div>

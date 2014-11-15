@@ -1,0 +1,149 @@
+<div bb-page>
+
+  <form name="booking_form" class="bb-form" role="form" novalidate bb-raise-alert-when-invalid>
+    <div bb-item-details role="form">
+   
+
+      <div class="bb-frame">
+        <div class="bb-head">
+          <h2>Summary</h2>
+        </div>
+
+        <div class="bb-node bb-text">
+          <ul>
+            <li ng-if="bb.company.id == 37000">
+              <label>Location:</label><span class="txt">{{item.resource.name}}</span>
+            </li>
+            <li ng-if="bb.company.id == 37001">
+              <label>Location:</label><span class="txt">{{bb.company.name}}</span>
+            </li>
+            <li>
+              <label>Details:</label><span class="txt">{{item.describe()}}</span>
+            </li>
+            <li>
+              <label>Date:</label><span class="txt">{{item.booking_date("dddd, MMMM Do YYYY")}}</span>
+            </li>
+            <li>
+              <label>Time:</label><span class="txt">{{item.booking_time()}}</span>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+
+      <br clear="all"/>
+
+
+      <div class="bb-frame">
+        <div class="bb-head">
+          <h2>Your details</h2>
+        </div>
+
+        <div class="bb-node">
+          <div ng-form name="client_form" class="bb-form" role="form" novalidate>
+            <ul>
+              <li ng-class="{'has-error': client_form.first_name.$invalid && booking_form.submitted}">
+                <label for="first_name">First Name:</label>
+                <span>
+                  <input type="text" name="first_name" id"first_name" required ng-model="client.first_name" class="form-control"/>
+                </span>
+              </li>
+              <li ng-class="{'has-error': client_form.last_name.$invalid && booking_form.submitted}">
+                <label for="last_name">Last Name:</label>
+                <span>
+                  <input type="text" name="last_name" id="last_name" required ng-model="client.last_name" class="form-control"/>
+                </span>
+              </li>
+              <li ng-class="{'has-error': client_form.email.$invalid && booking_form.submitted}">
+                <label for="email">E-mail:</label>
+                <span>
+                  <input type="email" name="email" id="email" ng-model="client.email" class="form-control"/>
+                </span>
+              </li>
+
+              <li ng-if="bb.company.id == 37000" ng-class="{'has-error': client_form.mobile.$invalid && booking_form.submitted}">
+                <label for="mobile">Mobile:</label>
+                <span>
+                  <input type="text" name="mobile" id="mobile" ng-pattern="validator.getUKMobilePattern(true)" ng-model="client.mobile" class="form-control" bb-focus/>
+                </span>
+              </li>
+
+             <li ng-if="bb.company.id == 37001" ng-class="{'has-error': client_form.mobile.$invalid && booking_form.submitted}">
+                <label for="mobile">Contact number:</label>
+                <span>
+                  <input type="text" name="mobile" id="mobile" ng-pattern="validator.getMobilePattern()" ng-model="client.mobile" class="form-control" bb-focus/>
+                </span>
+              </li>
+
+<!--               <div class="address" ng-if="bb.company.id != 37001">
+
+                <li ng-class="{'has-error': client_form.address1.$invalid && booking_form.submitted}">
+                  <label for="address1">Address 1:</label>
+                  <span>
+                    <input type="text" name="address1" id="address1" ng-model="client.address1" class="form-control" required />
+                  </span>
+                </li>
+                <li ng-class="{'has-error': client_form.address2.$invalid && booking_form.submitted}">
+                  <label for="address2">Address 2:</label>
+                  <span>
+                    <input type="text" name="address2" id="address2" ng-model="client.address2" class="form-control" />
+                  </span>
+                </li>
+                <li ng-class="{'has-error': client_form.address3.$invalid && booking_form.submitted}">
+                  <label for="address3">Town/City:</label>
+                  <span>
+                    <input type="text" name="address3" id="address3" ng-model="client.address3" class="form-control" required />
+                  </span>
+                </li>
+                <li ng-class="{'has-error': client_form.address4.$invalid && booking_form.submitted}">
+                  <label for="address4">County:</label>
+                  <span>
+                    <input type="text" name="address4" id="address4" ng-model="client.address4" class="form-control" />
+                  </span>
+                </li>
+                <li ng-class="{'has-error': client_form.address5.$invalid && booking_form.submitted}">
+                  <label for="address5">Postcode</label>
+                  <span>
+                    <input type="text" name="address5" id="address5" ng-model="client.address5" class="form-control" required />
+                  </span>
+                </li>
+
+              </div> -->
+
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+    <br clear="all"/>
+
+    <div class="bb-frame" ng-show="item_details.hasQuestions" >
+      <div class="bb-head">
+        <h2>Other information</h2>
+      </div>
+      <divclass="bb-node question-node">
+        <div ng-form="booking_questions_form" class="bb-form" role="form" novalidate>
+          <ul>
+            <li ng-repeat="question in item_details.questions" bb-question-line ng-class="{'has-error': booking_questions_form['q' + question.id].$invalid && booking_form.submitted}">
+              <label ng-if="question.detail_type != 'check'" for="{{question.id}}">{{question.name}}<div style="display: inline" ng-show="question.required">*</div></label>
+              <label ng-if="question.detail_type == 'check'" class="hidden-xs" style="line-height: initial">&nbsp;</label>
+              <span><input bb-question="question"/><br/>
+                <small>{{question.help_text}}</small></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </form><!-- form -->
+
+  <div class="bb-actions">
+    <div class="next">
+      <button type="button" class="bb-btn-next btn btn-primary bb-push" ng-click="validator.validateForm(booking_form) && checkReady() && routeReady()">Book</button>
+      <button type="button" class="bb-btn bb-pull" ng-click="loadPreviousStep()">Back</button>
+    </div>
+  </div>
+
+</div>

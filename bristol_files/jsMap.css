@@ -1,0 +1,36 @@
+.esriLegendLeft
+{
+    margin-left: -5px;
+    margin-top: -5px;
+}
+.esriLegendService img{
+    margin-top: -2px;
+}
+.idImage 
+{
+    max-height:350px;
+    max-width:350px;
+}
+.infowindow .window .top .right .user .titlebar .hide .sprite {background-image: url(../images/close.png);}
+.infowindow .window .top .right .user .titlebar .hide .sprite:hover {background-image: url(../images/close.png);}
+.lnkHistoric 
+{
+    margin-left:1px;
+}
+.pnlMapOpts {
+    position:absolute;
+    right:0px;
+    top:0px;
+    z-index:21;
+}
+.pnlMeasure {
+    position:absolute;
+    right:192px;
+    top:0px;
+    z-index:21;
+}
+.jsMapLegendEl {
+    overflow: auto;
+    overflow-x: hidden;
+    position:relative
+}

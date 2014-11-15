@@ -1,0 +1,47 @@
+<div ng-controller="ClientDetails" ng-init="checkStepTitle('Your Details')">
+  <div class="bb-client">
+      <div class="bb-frame">
+        <div class="bb-head">
+          <h2>Your details</h2>
+        </div>
+        <form name="client_form" class="bb-form" role="form">
+
+          <div class="bb-entry">
+            <label>First Name:</label>
+            <div class="bb-field">
+              <input type="text" ng-model="client.first_name" class="form-control"/>
+            </div>
+          </div>
+
+          <div class="bb-entry">
+      			 <label>Last Name:</label>
+            <div class="bb-field">
+              <input type="text" ng-model="client.last_name" class="form-control"/>
+            </div>
+          </div>
+
+          <div class="bb-entry">
+      			 <label>E-mail:</label>
+            <div class="bb-field">
+              <input type="email" ng-model="client.email" class="form-control"/>
+            </div>
+          </div>
+
+          <div class="bb-entry">
+            <label>Mobile:</label>
+            <div class="bb-field">
+              <input type="text" ng-model="client.mobile" class="form-control"/>
+            </div>
+          </div>
+
+      	</form>
+      </div>
+      <div class="container">
+        <div class="row">
+          <a href="" class="bb-btn-next bb-push" style="margin: 5px 0px 5px 5px;" ng-disabled="!client_form.$valid" ng-click="validateClient(client_form)">Next</a>
+          <a href="" class="bb-btn bb-push" style="margin: 5px 0px 5px 5px;" ng-click="reset()">Clear</a>
+          <a href="" class="bb-btn bb-pull" style="margin: 5px 0px 5px 5px;" ng-click="loadPreviousStep()">Back</a>
+        </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+<div bb-checkout>
+  <div class="bb-checkout">
+    <div ng-show="total" class="bb-frame">
+      <div class="bb-head">
+        <h2>Your Booking Confirmation<h2>
+      </div>
+      <div class="bb-node checkout-node">
+      <h3>Your Details</h3>
+        <ul>
+          <li class="field">
+            <div class="ttl">Name</div>
+            <div class="txt">{{client.getName()}}</div>
+          </li>
+          <li class="field">
+            <div class="ttl">Email</div>
+            <div class="txt">{{client.email}}</div>
+          </li>
+          <li class="field" ng-show="client.mobile">
+            <div class="ttl">Mobile</div>
+            <div class="txt">{{client.mobile}}</div>
+          </li>
+<!--           <li class="field" ng-show="client.address">
+            <div class="ttl">Address</div>
+            <div class="txt">{{client.address | address_multi_line}}</div>
+          </li> -->
+        </ul>
+      </div>
+      <div class="bb-node checkout-node">
+        <h3>Booking Details</h3>
+        <ul class="show_list" ng-repeat="i in total.bookings">
+          <li class="field" ng-if="bb.company.id == 37000">
+            <div class="ttl">Location:</div>
+            <div class="txt">{{i.resource_name}}</div>
+          </li>
+          <li class="field" ng-if="bb.company.id == 37001">
+            <div class="ttl">Location:</div>
+            <div class="txt">{{bb.company.name}}</div>
+          </li>
+          <li class="field" ng-if="bb.company.id == 37000">
+            <div class="ttl">Address:</div>
+            <div class="txt" ng-bind-html="i.getResource().getAddress() | address_multi_line"></div>
+          </li>
+          <li class="field" ng-if="bb.company.id == 37001">
+            <div class="ttl">Address:</div>
+            <div class="txt" ng-bind-html="bb.company.getAddress() | address_multi_line"></div>
+          </li>
+          <li class="field">
+            <div class="ttl">Phone:</div>
+            <div class="txt">{{bb.company.getAddress().phone}}</div>
+          </li>
+          <li class="field">
+            <div class="ttl">Service:</div>
+            <div class="txt">{{i.full_describe}}</div>
+          </li>
+          <li class="field">
+            <div class="ttl">Date/Time:</div>
+            <div class="txt">{{i.describe}}</div>
+          </li>
+        </ul>
+      </div>
+<!--       <div bb-custom-confirmation-text class="message-node checkout-node" ng-show="messages">
+        <div ng-repeat="msg in messages">{{msg}}</div>
+      </div> -->
+
+
+      <div class="payment">
+        <div bb-custom-confirmation-text class="text-block-sml" ng-show="messages">
+          <p ng-repeat="msg in messages" ng-bind-html="msg"></p>
+        </div>
+      </div>
+
+
+      <div id="block_calender" class="calendar-node">
+        <span class="cal-title">Export to calendar:</span>
+        <a class="image img_outlook" title="Add this booking to an Outlook Calendar" ng-href="{{total.icalLink()}}"><img alt="" src="https://www.bookingbug.com/assets/outlook.png"></a>
+        <a class="image img_ical" title="Export this booking to an iCal Calendar" ng-href="{{total.icalLink()}}"><img alt="" src="https://www.bookingbug.com/assets/ical.png"></a>
+        <a class="image img_gcal" title="Export this booking to Google Calendar" ng-href="{{total.gcalLink()}}" target="_blank"><img src="https://www.bookingbug.com/assets/gcal.png" border="0"></a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div style="margin: 10px 0px;">
+      <button type="button" class="bb-btn-next bb-push" onclick="window.print()" style="margin-right: 15px;">Print</button>
+    </div>
+  </div>
+</div>

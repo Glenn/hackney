@@ -1,0 +1,28 @@
+/*
+    Goal is to leave just the main content area for printing.
+*/
+
+#header,
+#accessibility-menu,
+#footer,
+#sidebar-first,
+.share-this,
+.addthis_toolbox,
+#toolbar,
+#breadcrumbs,
+.local-tasks {
+  display: none;
+}
+
+#genesis-1c #content-column .content-inner,
+#container,
+#content-column,
+.page-section {
+  width: 100%;
+  float: none;
+  margin: 0px;
+}
+
+body {
+  padding: 0px;
+}

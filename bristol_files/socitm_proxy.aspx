@@ -1,0 +1,1 @@
+socitm.utils.parseConfig({"domains":"","intro_override":"","css_override":"","ratio":5,"supersetid":"20","disabled":false,"logo_type":1});

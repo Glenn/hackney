@@ -1,0 +1,77 @@
+<div ng-if="!bb.current_item.move_done">
+  <div ng-controller="ItemDetails" ng-init="checkStepTitle('Confirm Details') && confirm_move()" class="check-items">
+    <h4>Amending booking</h4>
+  </div>
+</div>
+<div ng-if="bb.current_item.move_done">
+  <h2>Booking amended</h2>
+  <div class="checkout">
+
+  <div ng-init="$parent.$parent.$parent.showBanner=true"></div>
+  <div>
+    <div class="bb-checkout">
+      <div ng-show="checkoutFailed" class="bb-frame">
+        <div class="bb-head">
+          <h2>
+            Sorry, for some reason this booking failed. Please try again.
+          </h2>
+        </div>
+        <div>
+          <p>Sorry, for some reason this booking failed. Please try again.</p>
+        </div>
+      </div>
+      <div ng-show="total" class="bb-frame">
+        <div class="bb-head">
+          <h2>Your Confirmation<h2>
+        </div>
+        <div class="bb-node checkout-node">
+        <h3>Client Details</h3>
+          <ul>
+            <li class="field">
+              <label>Name</label><span>{{client.getName()}}</span>
+            </li>
+            <li class="field">
+              <label>Email</label><span>{{client.email}}</span>
+            </li>
+            <li class="field" ng-show="client.mobile">
+              <label>Mobile</label><span>{{client.mobile}}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="bb-node checkout-node">
+          <h3>Booking Confirmation Details</h3>
+          <ul class="show_list">
+            <li class="field">
+              <label>Store</label><span>{{bb.company.name}}</span>
+            </li>
+            <li class="field">
+              <label>Address</label><span>{{bb.company.getAddress().addressSingleLine()}}</span>
+            </li>
+            <li class="field">
+              <label>Phone</label><span>{{bb.company.getAddress().phone}}</span>
+            </li>
+            <li class="field">
+              <label>Service</label><span>{{bookings[0].full_describe}}</span>
+            </li>
+            <li class="field">
+              <label>Date/Time</label><span>{{bookings[0].describe}}</span>
+            </li>
+          </ul>
+        </div>
+        <div ng-controller='CustomConfirmationText' class="message-node checkout-node" ng-show="messages">
+          <div ng-repeat="msg in messages">{{msg}}</div>
+        </div>
+
+        <div id="block_calender" class="calendar-node">
+          <span class="cal-title">Export to calendar:</span>
+          <a class="image img_outlook" title="Add this booking to an Outlook Calendar" href="{{bookings[0].icalLink()}}"><img alt="" src="https://www.bookingbug.com/assets/outlook.png"></a>
+          <a class="image img_ical" title="Export this booking to an iCal Calendar" href="{{bookings[0].webcalLink()}}"><img alt="" src="https://www.bookingbug.com/assets/ical.png"></a>
+          <a class="image img_gcal" title="Export this booking to Google Calendar" href="{{bookings[0].gcalLink()}}" target="_blank"><img src="https://www.bookingbug.com/assets/gcal.png" border="0"></a>
+        </div>
+      </div>
+    </div>
+    <div style="margin: 10px 0px;">
+      <button type="button"class="bb-btn-next bb-push" onclick="window.print()" style="margin-right: 15px;">Print</button>
+    </div>
+  </div>
+</div>

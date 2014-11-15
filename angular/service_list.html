@@ -1,0 +1,23 @@
+<div bb-services class="bb_wrap">
+<h1>Select a Service</h1>
+
+  <div class="bb-list">
+    <div class="bb-list-item">
+      <div class="bb-item col-xs-12" ng-repeat="item in items" ng-if="item.id != '48325'">
+        <div class="box">
+          <div class="box-title col-xs-8">
+            <span>{{item.name}}</span>
+            <p>{{item.description}} </p>
+          </div>
+          <div class="list-actions">
+            <button type="button" ng-click="selectItem(item)" class="bb-btn bb-btn-warn">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal -->
+
